@@ -9,19 +9,17 @@ public class MyTimer implements Runnable {
     public void run() {
         try {
             while (true) {
-                Thread.sleep(1);
 
                 if (panel.isSorted()) {
                     panel.setCompareIndex(Integer.MAX_VALUE);
-                    //int i = panel.getCompareIndex();
-                    //panel.getCompareIndex()
-                    //i = Integer.MAX_VALUE;
-                    //compare_index = Integer.MAX_VALUE;
+                    Thread.currentThread().interrupt();
                     return;
                 } else {
                     if (panel.getIsRunning() == true) panel.sortOnlyOneItem();
                 }
+                Thread.sleep(0, 1);
                 panel.repaint();
+                //Thread.sleep(1);
 
             }
         } catch (InterruptedException e) {
