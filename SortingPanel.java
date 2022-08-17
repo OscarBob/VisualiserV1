@@ -31,6 +31,7 @@ public class SortingPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
+                    getZeroed();
                     isRunning = true;
                     BubbleSortAnimate();
                 } catch (Exception exception) {
@@ -46,8 +47,7 @@ public class SortingPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setArray();
-                compare_index = Integer.MAX_VALUE;
-                array_index = 0;
+                getZeroed();
                 isRunning = false;
                 repaint();
             }
@@ -57,12 +57,20 @@ public class SortingPanel extends JPanel {
         this.add(reset);
     }
 
+    public void getZeroed() {
+        this.compare_index = Integer.MAX_VALUE;
+        this.array_index = 0;
+    }
+
     public int[] getArray() {
         return this.array;
     }
 
     public boolean getIsRunning() {
         return this.isRunning;
+    }
+    public int getCompareIndex() {
+        return this.compare_index;
     }
 
     public void setCompareIndex(int New_Index) {
@@ -91,6 +99,11 @@ public class SortingPanel extends JPanel {
         else compare_index++;
     }
 
+    public void randomOnlyOneItem() {
+        array[compare_index] = random.nextInt(510) + 40;
+        compare_index++;
+    }
+
     public boolean isSorted() {
         for (int i = 0; i < array.length - 1; i++) {
             if(array[i] > array[i + 1]) {
@@ -107,22 +120,6 @@ public class SortingPanel extends JPanel {
         Thread t = new Thread(new MyTimer(this));
         t.start();
 
-        /*
-
-        Timer timer = new Timer(1, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (isSorted()) {
-                    compare_index = Integer.MAX_VALUE;
-                    ((Timer)e.getSource()).stop();
-                } else {
-                    if (isRunning == true) sortOnlyOneItem();
-                }
-                repaint();
-            }
-        });
-        timer.start();
-        */
     }
 
     @Override
