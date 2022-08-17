@@ -9,9 +9,11 @@ public class MyTimer implements Runnable {
     public void run() {
         try {
             while (true) {
-
+                //System.out.print("hmm");
                 if (panel.isSorted()) {
                     panel.setCompareIndex(Integer.MAX_VALUE);
+                    //System.out.print(panel.getArray());
+                    System.out.print("hmm");
                     Thread.currentThread().interrupt();
                     return;
                 } else {

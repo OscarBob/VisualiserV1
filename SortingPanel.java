@@ -98,7 +98,7 @@ public class SortingPanel extends JPanel {
             }
         }
 
-        return false;
+        return true;
     }
 
 
