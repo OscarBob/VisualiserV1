@@ -61,6 +61,14 @@ public class SortingPanel extends JPanel {
         return this.array;
     }
 
+    public boolean getIsRunning() {
+        return this.isRunning;
+    }
+
+    public void setCompareIndex(int New_Index) {
+        this.compare_index = New_Index;
+    }
+
     public void setArray() {
         for (int i = 0; i < this.array.length; i++) {
             this.array[i] = random.nextInt(510) + 40;
@@ -93,8 +101,13 @@ public class SortingPanel extends JPanel {
         return false;
     }
 
+
     public void BubbleSortAnimate() throws Exception {
         compare_index = 0;
+        Thread t = new Thread(new MyTimer(this));
+        t.start();
+
+        /*
 
         Timer timer = new Timer(1, new ActionListener() {
             @Override
@@ -109,6 +122,7 @@ public class SortingPanel extends JPanel {
             }
         });
         timer.start();
+        */
     }
 
     @Override
@@ -124,8 +138,8 @@ public class SortingPanel extends JPanel {
                 g.setColor(Color.RED);
             }
 
-            g.drawRect(i*15, 600 - array[i], 14, array[i]);
-            g.fillRect(i*15, 600 - array[i], 14, array[i]);
+            g.drawRect(i*15, 600 - array[i], 15, array[i]);
+            g.fillRect(i*15, 600 - array[i], 15, array[i]);
         }
     }
 }
